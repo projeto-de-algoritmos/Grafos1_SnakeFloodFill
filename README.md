@@ -1,30 +1,16 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# SnakeFloodFill
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 20<br>
+**Conteúdo da Disciplina**: Grafos 1<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 19/0025379  |  Brenno Oliveira Silva |
+| 19/0020377  |  Thiago Sampaio de Paiva |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+O projeto SnakeFloodFill tem como objetivo ser um jogo da cobrinha onde que há varias areas infectadas que cresce com Flood Fill. O jogador tem que obter a melhor pontuação enquanto evita as áreas infectadas.
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.
