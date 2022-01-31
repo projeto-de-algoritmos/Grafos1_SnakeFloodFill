@@ -1,20 +1,32 @@
 import pygame
-from pygame import QUIT, Color, display
+from pygame import QUIT, Color, display, Surface
 from pygame import event
 from floodfill import dsf_flood_fiil
 from point import Point
+from pygame.transform import scale
+from pygame.image import load
+
 
 pygame.init()
 
-tamanho = 800, 600
-superficie = display.set_mode(size=tamanho)
+size = 800, 600
+pos_game = (105, 70)
+size_game = (590, 430)
+
+surface = display.set_mode(size=size)
+game_surface = Surface(size_game, pygame.SRCALPHA, 32)
+
 display.set_caption("SnakeFloodFill")
 
+background = scale(
+    load("../images/background.png"),
+    size
+)
+
 floods = [
-    dsf_flood_fiil(Point(400, 300), superficie, Color(255, 255, 255)),
-    dsf_flood_fiil(Point(0, 0), superficie, Color(255, 0, 255)),
-    dsf_flood_fiil(Point(tamanho[0]-1, tamanho[1]-1), superficie, Color(100, 100, 255)),
-    dsf_flood_fiil(Point(0, tamanho[1]-1), superficie, Color(255, 0, 0)),
+    dsf_flood_fiil(Point(400, 300), game_surface, Color(255, 255, 255)),
+    dsf_flood_fiil(Point(100, 300), game_surface, Color(0, 255, 255)),
+    dsf_flood_fiil(Point(200, 300), game_surface, Color(255, 0, 255)),
 ]
 
 while True:
@@ -22,7 +34,7 @@ while True:
 
     for flood in floods:
         try:
-            for _ in range(20):
+            for _ in range(500):
                 next(flood)
         except StopIteration:
             floods.remove(flood)
@@ -31,5 +43,9 @@ while True:
     for evento in event.get():  # Events
         if evento.type == QUIT:
             pygame.quit()
+
+
+    surface.blit(background, (0, 0))
+    surface.blit(game_surface, pos_game)
 
     display.update()
