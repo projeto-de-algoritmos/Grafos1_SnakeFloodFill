@@ -2,7 +2,7 @@ import pygame
 import random
 from pygame import QUIT, Color, display, Surface
 from pygame import event
-from floodfill import dsf_flood_fiil
+from floodfill import bsf_flood_fill, dsf_flood_fill
 from point import Point
 from pygame.transform import scale
 from pygame.image import load
@@ -19,8 +19,7 @@ size_game = (590, 430)
 surface = display.set_mode(size=size)
 game_surface = Surface(size_game, pygame.SRCALPHA, 32)
 GAME_DEFAULT_COLOR = Color(0, 0, 0, 0)
-START_FLOOD_FILL = [Point(100, 120), Point(450, 400)]
-
+START_FLOOD_FILL = [Point(100, 120), Point(450, 400),  Point(315, 315)]
 
 display.set_caption("SnakeFloodFill")
 
@@ -33,8 +32,8 @@ snake = Snake(400, 400)
 snake_group = GroupSingle(snake)
 
 floods = [
-    dsf_flood_fiil(random.choice(START_FLOOD_FILL), game_surface, Color(10, 200, 255)),
-    dsf_flood_fiil(random.choice(START_FLOOD_FILL), game_surface, Color(10, 200, 255)),
+    bsf_flood_fill(random.choice(START_FLOOD_FILL), game_surface, Color(10, 200, 255)),
+    dsf_flood_fill(random.choice(START_FLOOD_FILL), game_surface, Color(10, 200, 255)),
 ]
 
 clock = Clock()

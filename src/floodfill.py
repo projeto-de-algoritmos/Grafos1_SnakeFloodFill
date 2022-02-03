@@ -1,17 +1,33 @@
 from pygame import Color
 from pygame.surface import Surface
 from typing import Iterable
-from queue import Queue
+from queue import Queue, LifoQueue
 from point import Point
 
-
-def dsf_flood_fiil(point: Point, superface: Surface, colorFill: Color):
+def bsf_flood_fill(point: Point, superface: Surface, colorFill: Color):
     color = superface.get_at(point.get())
     display_size = (superface.get_width(), superface.get_height())
     if color == colorFill:
         return
 
     q = Queue()
+    q.put(point)
+    superface.set_at(point.get(), colorFill)
+    while not q.empty():
+        point = q.get()
+        for point_adj in get_adj_points(point, display_size):
+            if superface.get_at(point_adj.get()) == color:
+                superface.set_at(point_adj.get(), colorFill)
+                q.put(point_adj)
+                yield
+
+def dsf_flood_fill(point: Point, superface: Surface, colorFill: Color):
+    color = superface.get_at(point.get())
+    display_size = (superface.get_width(), superface.get_height())
+    if color == colorFill:
+        return
+
+    q = LifoQueue()
     q.put(point)
     superface.set_at(point.get(), colorFill)
     while not q.empty():
