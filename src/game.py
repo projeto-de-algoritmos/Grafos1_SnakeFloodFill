@@ -6,8 +6,9 @@ from floodfill import bsf_flood_fill, dsf_flood_fill
 from point import Point
 from pygame.transform import scale
 from pygame.image import load
-from pygame.sprite import Sprite, GroupSingle
+from pygame.sprite import Sprite, GroupSingle, groupcollide
 from snake import Snake
+from fruit import Fruit
 from pygame.time import Clock
 
 pygame.init()
@@ -19,7 +20,7 @@ size_game = (590, 430)
 surface = display.set_mode(size=size)
 game_surface = Surface(size_game, pygame.SRCALPHA, 32)
 GAME_DEFAULT_COLOR = Color(0, 0, 0, 0)
-START_FLOOD_FILL = [Point(100, 120), Point(450, 400),  Point(315, 315)]
+START_FLOOD_FILL = [Point(100, 120)]
 
 display.set_caption("SnakeFloodFill")
 
@@ -48,7 +49,14 @@ def has_lost(snake: Sprite, surface: Surface, pos_game):
         return True
     if snakeY <= pos_game[1] or snakeY + snakeHeigth > surface.get_height() + pos_game[1]:
         return True
-    return surface.get_at((snakeX-pos_game[0], snakeY-pos_game[1])) != GAME_DEFAULT_COLOR
+    return is_infected(snake)
+
+def is_infected(object: Sprite):
+    return game_surface.get_at((object.rect.x-pos_game[0], object.rect.y-pos_game[1])) != GAME_DEFAULT_COLOR
+
+fruit = Fruit(is_infected, game_surface, pos_game)
+fruit_group = GroupSingle(fruit)
+points = 0
 
 while not lost:
     # Loop de eventos
@@ -74,8 +82,17 @@ while not lost:
     snake_group.draw(surface)
     snake_group.update()
 
+    fruit_group.draw(surface)
+    fruit_group.update()
+
     lost = has_lost(snake_group.sprite, game_surface, pos_game)
 
+    if groupcollide(snake_group, fruit_group, False, True):
+        points += 1
+        fruit2 = Fruit(is_infected, game_surface, pos_game)
+        fruit_group.add(fruit2)
+
+    print(points)
     display.update()
 
 print("Perdeu!!!")
