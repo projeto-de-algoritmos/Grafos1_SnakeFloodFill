@@ -1,7 +1,6 @@
 import pygame
 import random
-from pygame import QUIT, Color, display, Surface
-from pygame import event
+from pygame import QUIT, Color, display, Surface, event, font
 from floodfill import bsf_flood_fill, dsf_flood_fill
 from point import Point
 from pygame.transform import scale
@@ -17,10 +16,13 @@ size = 800, 600
 pos_game = (105, 70)
 size_game = (590, 430)
 
+game_over_font = font.SysFont('roboto', 100)
+score_font = font.SysFont('roboto', 40)
+
 surface = display.set_mode(size=size)
 game_surface = Surface(size_game, pygame.SRCALPHA, 32)
 GAME_DEFAULT_COLOR = Color(0, 0, 0, 0)
-START_FLOOD_FILL = [Point(100, 120)]
+START_FLOOD_FILL = [Point(1, 1), Point(589, 429), Point(439, 150)]
 
 display.set_caption("SnakeFloodFill")
 
@@ -75,7 +77,6 @@ while not lost:
         if evento.type == QUIT:
             pygame.quit()
 
-
     surface.blit(background, (0, 0))
     surface.blit(game_surface, pos_game)
 
@@ -85,14 +86,37 @@ while not lost:
     fruit_group.draw(surface)
     fruit_group.update()
 
-    lost = has_lost(snake_group.sprite, game_surface, pos_game)
+    lost += has_lost(snake_group.sprite, game_surface, pos_game)
 
     if groupcollide(snake_group, fruit_group, False, True):
         points += 1
         fruit2 = Fruit(is_infected, game_surface, pos_game)
         fruit_group.add(fruit2)
 
-    print(points)
-    display.update()
+    if (lost):
+        game_over = game_over_font.render(
+            "Game Over!",
+            True,
+            (255, 255, 255)
+        )
 
-print("Perdeu!!!")
+        final_score = score_font.render(
+            f"Final Score: {points}",
+            True,
+            (255, 255, 255)
+        
+        )
+        surface.blit(game_over, (200, 200))
+        surface.blit(final_score, (330, 270))
+
+        display.update()
+        pygame.time.delay(5000)
+    
+    score = score_font.render(
+        f"Points: {points}",
+        True,
+        (0, 0, 0)
+    )
+    surface.blit(score, (340, 550))
+
+    display.update()
