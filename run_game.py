@@ -6,7 +6,7 @@ from src.config import GameConfig
 
 config = GameConfig(
     title="Snake Flood Fill",
-    fps=120,
+    fps=15,
     window_size=Size(800, 600),
     map_size=Size(600, 430),
     map_start=Point(101, 71),

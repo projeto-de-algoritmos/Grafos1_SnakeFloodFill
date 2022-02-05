@@ -2,7 +2,6 @@ from pygame import font, display
 import pygame
 from pygame.sprite import GroupSingle, groupcollide
 
-
 from .game import Game
 from .config import GameConfig
 from .map import Map
@@ -23,7 +22,7 @@ class SnakeGame(Game):
         self.add_object(self.map)
 
         self.fruit = GroupSingle(Fruit(self.map))
-        self.snake = GroupSingle(Snake(self))
+        self.snake = Snake(self)
 
         self.map.add_object(self.fruit)
         self.map.add_object(self.snake)
@@ -40,6 +39,7 @@ class SnakeGame(Game):
         if groupcollide(self.snake, self.fruit, False, False):
             self.points += 1
             self.fruit.update(change_position=True)
+            self.snake.grow_body()
 
     def draw(self):
         super().draw()
