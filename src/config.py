@@ -15,3 +15,5 @@ class GameConfig:
     score_start: Point
     game_over_start: Point
     final_score_start: Point
+
+    music: str

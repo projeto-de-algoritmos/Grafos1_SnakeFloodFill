@@ -1,5 +1,5 @@
-from pygame import font, display
 import pygame
+from pygame import font, display
 from pygame.sprite import GroupSingle, groupcollide
 
 from .game import Game
@@ -10,10 +10,11 @@ from .board import Board
 from .snake import Snake
 from .fruit import Fruit
 
-
 class SnakeGame(Game):
     def __init__(self, config: GameConfig):
         super().__init__(config)
+
+        play_music(config.music)
 
         self.board = Board(self)
         self.add_object(self.board)
@@ -58,7 +59,15 @@ class SnakeGame(Game):
         self.surface.blit(final_score, self.config.final_score_start)
 
         display.update()
+        
+        pygame.mixer.music.stop()
 
         while self.running:
             self.manage_events()
             pygame.time.delay(100)
+
+
+def play_music(music: str):
+    pygame.mixer.music.load(music)
+    pygame.mixer.music.set_volume(.2)
+    pygame.mixer.music.play(-1)

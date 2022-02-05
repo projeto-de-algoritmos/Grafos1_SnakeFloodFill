@@ -13,6 +13,7 @@ config = GameConfig(
     game_over_start=Point(200, 200),
     final_score_start=Point(330, 270),
     score_start=Point(340, 550),
+    music = "sounds/music.mp3"
 )
 
 game = SnakeGame(config)
