@@ -1,33 +1,31 @@
-import pygame
+import random
 from pygame.sprite import Sprite
 from pygame.image import load
 from pygame.transform import scale
-import random
+
+from .utils import Point, get_edges
+from .map import Map
+
 
 class Fruit(Sprite):
-    def __init__(self, is_infected, surface: pygame.Surface, pos_game: pygame.Surface):
+    def __init__(self, map: Map):
         super().__init__()
 
-        self.image = scale(
-            load('../images/snake.png'),
-            (10, 10)
-        )
+        self.map = map
+        self.image = scale(load("images/snake.png"), (10, 10))
 
-        self.is_infected = is_infected
-        self.surface = surface
-        self.pos_game = pos_game
+        self.rect = self.image.get_rect(center=self.random_position())
 
-        self.rect = self.image.get_rect(
-            center = self.random_position()
-        )
-
-    
-    def random_position(self):
-        pos_x = random.randint(self.pos_game[0] + 50, self.surface.get_height()-self.pos_game[0] - 50)
-        pos_y = random.randint(self.pos_game[1] + 50, self.surface.get_width()-self.pos_game[1] - 50)
-
-        return (pos_x, pos_y)
-    
-    def update(self):
-        if self.is_infected(self):
+    def update(self, change_position=False):
+        if self.has_collisions() or change_position:
             self.rect.x, self.rect.y = self.random_position()
+
+    def has_collisions(self):
+        return len(list(filter(self.map.is_infected, get_edges(self)))) > 0
+
+    def random_position(self):
+        padding = 50
+        return Point(
+            x=random.randint(padding, self.map.surface.get_width() - padding),
+            y=random.randint(padding, self.map.surface.get_height() - padding),
+        )

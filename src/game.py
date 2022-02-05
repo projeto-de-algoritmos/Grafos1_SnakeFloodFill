@@ -1,38 +1,49 @@
 import pygame
-from pygame import QUIT, Surface, display, event
+from pygame import QUIT, display, event
+from pygame.surface import Surface
 from pygame.time import Clock
 from pygame.sprite import AbstractGroup
-from typing import Protocol
+from .config import GameConfig
 
-class GameObject(Protocol):
+GameObject = AbstractGroup
+
+
+class GameSurface(GameObject):
+    def __init__(self, surface: Surface):
+        self.objects: list[GameObject] = []
+        self.surface = surface
+
+    def add_object(self, object: GameObject):
+        self.objects.append(object)
+
+    def remove_object(self, object: GameObject):
+        self.objects.remove(object)
+
     def update(self):
-        ...
+        for obj in self.objects:
+            try:
+                obj.update()
+            except RemoveGameObject:
+                self.remove_object(obj)
 
     def draw(self, surface: Surface):
-        ...
+        for obj in self.objects:
+            obj.draw(surface)
 
-class Game:
-    def __init__(self, title: str, width:int, height: int, fps: int = 120):
+
+class Game(GameSurface):
+    def __init__(self, config: GameConfig):
+        super().__init__(display.set_mode(size=config.window_size))
         pygame.init()
-        display.set_caption(title)
+        display.set_caption(config.title)
 
-        self.width = width
-        self.height = height
+        self.config = config
         self.running = False
-        self.fps = fps
         self.clock = Clock()
-        self.surface = display.set_mode(size=(width, height))
-        self.objects: list[GameObject] = []
 
     @property
     def size(self):
-        return (self.width, self.height)
-      
-    def add_object(self, object: GameObject):
-        self.objects.append(object)
-    
-    def remove_object(self, object: GameObject):
-        self.objects.remove(object)
+        return self.config.window_size
 
     def run(self):
         self.running = True
@@ -40,13 +51,13 @@ class Game:
 
     def _run(self):
         while self.running:
-            self.clock.tick(self.fps)
-            
+            self.clock.tick(self.config.fps)
+
             self.update()
             self.draw()
 
             self.manage_events()
-    
+
             display.update()
 
     def manage_events(self):
@@ -57,10 +68,9 @@ class Game:
     def end(self):
         self.running = False
 
-    def update(self):
-        for obj in self.objects:
-            obj.update()
-
     def draw(self):
-        for obj in self.objects:
-            obj.draw(self.surface)
+        super().draw(self.surface)
+
+
+class RemoveGameObject(Exception):
+    ...
