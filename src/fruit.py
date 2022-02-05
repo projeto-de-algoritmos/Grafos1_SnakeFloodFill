@@ -10,7 +10,7 @@ class Fruit(Sprite):
 
         self.image = scale(
             load('../images/snake.png'),
-            (10, 10)
+            (5, 5)
         )
 
         self.is_infected = is_infected
