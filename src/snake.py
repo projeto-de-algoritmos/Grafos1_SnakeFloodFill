@@ -75,8 +75,8 @@ class Snake(Group):
         self.game = game
         self.map = game.map
         head_pos = Point(
-            x = game.map.surface.get_width() / 2,
-            y = game.map.surface.get_height() / 2
+            x = (game.map.surface.get_width() / 2) - 100,
+            y = game.map.surface.get_height() / 2 + 100
         )
         self.head = Head(head_pos)
         self.bodyGroup = Group(Body(self.head.pos + Point(-SNAKE_BLOCK, 0)))

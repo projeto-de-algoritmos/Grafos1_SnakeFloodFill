@@ -4,6 +4,7 @@ from pygame.surface import Surface
 from abc import ABC
 from typing import Callable, Optional
 from random import randint
+from dataclasses import dataclass
 
 from .map import Map
 from .utils import Point
@@ -52,3 +53,13 @@ def random_color():
     return Color(
         random_color_generator(), random_color_generator(), random_color_generator()
     )
+
+
+@dataclass
+class InfecterBuilder:
+    infecter: Infecter
+    start: Point
+    step: int
+
+    def build(self) -> Infecter:
+        return self.infecter(start=self.start, step=self.step)

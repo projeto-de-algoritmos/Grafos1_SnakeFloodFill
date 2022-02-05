@@ -1,8 +1,10 @@
+import random
 from pygame import Color
-from src.infecter import InfecterBFS, InfecterDFS
+from src.infecter import InfecterBFS, InfecterDFS, InfecterBuilder
 from src.utils import Point, Size
 from src.snake_game import SnakeGame
 from src.config import GameConfig
+
 
 config = GameConfig(
     title="Snake Flood Fill",
@@ -16,11 +18,20 @@ config = GameConfig(
     music = "sounds/music.mp3"
 )
 
+INFECTERS_POSSIBLE = [
+    [
+        InfecterBuilder(InfecterBFS, Point(0, 0), 20),
+        InfecterBuilder(InfecterDFS, Point(config.map_size.width - 10, config.map_size.heigth - 10), 20)
+    ],
+    [
+        InfecterBuilder(InfecterBFS, Point(config.map_size.width//2, config.map_size.heigth//2), 10)
+    ]
+]
+
+
 game = SnakeGame(config)
 
-game.add_infecter(InfecterBFS(start=Point(0, 0)))
-game.add_infecter(
-    InfecterDFS(start=Point(config.map_size[0] - 10, config.map_size[1] - 10))
-)
+for infecter in random.choice(INFECTERS_POSSIBLE):
+    game.add_infecter(infecter.build())
 
 game.run()
