@@ -1,10 +1,11 @@
 import pygame
-from pygame.sprite import Sprite, Group, spritecollideany, groupcollide
+from pygame.sprite import Sprite, Group, groupcollide
 from pygame.image import load
 from pygame.transform import scale
 from .utils import get_edges, Point
 
 SNAKE_BLOCK = 12
+
 
 class Direction:
     LEFT = Point(-SNAKE_BLOCK, 0)
@@ -12,24 +13,20 @@ class Direction:
     UP = Point(0, -SNAKE_BLOCK)
     DOWN = Point(0, SNAKE_BLOCK)
 
+
 class Head(Sprite):
     def __init__(self, pos: Point):
         super().__init__()
 
-        self.image = scale(
-            load('images/snake.png'),
-            (SNAKE_BLOCK, SNAKE_BLOCK)
-        )
+        self.image = scale(load("images/snake.png"), (SNAKE_BLOCK, SNAKE_BLOCK))
         self.image.get_offset
-        self.rect = self.image.get_rect(
-            center=pos
-        )
+        self.rect = self.image.get_rect(center=pos)
         self.velocity = Point(SNAKE_BLOCK, 0)
 
     @property
     def pos(self):
         return Point(self.rect.x, self.rect.y)
-    
+
     def update(self):
         self.read_keys()
         self.rect.x += self.velocity.x
@@ -47,17 +44,13 @@ class Head(Sprite):
         if keys[pygame.K_DOWN] and self.velocity != Direction.UP:
             self.velocity = Direction.DOWN
 
+
 class Body(Sprite):
     def __init__(self, pos: Point):
         super().__init__()
 
-        self.image = scale(
-            load('images/snake.png'),
-            (SNAKE_BLOCK, SNAKE_BLOCK)
-        )
-        self.rect = self.image.get_rect(
-            center=pos
-        )
+        self.image = scale(load("images/snake.png"), (SNAKE_BLOCK, SNAKE_BLOCK))
+        self.rect = self.image.get_rect(center=pos)
 
     def update(self, pos):
         self.rect.x = pos.x
@@ -66,7 +59,7 @@ class Body(Sprite):
     @property
     def pos(self):
         return Point(self.rect.x, self.rect.y)
-        
+
 
 class Snake(Group):
     def __init__(self, game):
@@ -75,8 +68,8 @@ class Snake(Group):
         self.game = game
         self.map = game.map
         head_pos = Point(
-            x = (game.map.surface.get_width() / 2) - 100,
-            y = game.map.surface.get_height() / 2 + 100
+            x=(game.map.surface.get_width() / 2) - 100,
+            y=game.map.surface.get_height() / 2 + 100,
         )
         self.head = Head(head_pos)
         self.bodyGroup = Group(Body(self.head.pos + Point(-SNAKE_BLOCK, 0)))
@@ -102,7 +95,7 @@ class Snake(Group):
             pos_before = b.pos
             b.update(pos)
             pos = pos_before
-            
+
     def manage_collisions(self):
         if self.has_collision() or self.has_collision_self():
             self.game.end_game()

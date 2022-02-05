@@ -10,6 +10,7 @@ from .board import Board
 from .snake import Snake
 from .fruit import Fruit
 
+
 class SnakeGame(Game):
     def __init__(self, config: GameConfig):
         super().__init__(config)
@@ -59,7 +60,7 @@ class SnakeGame(Game):
         self.surface.blit(final_score, self.config.final_score_start)
 
         display.update()
-        
+
         pygame.mixer.music.stop()
 
         while self.running:
@@ -69,5 +70,5 @@ class SnakeGame(Game):
 
 def play_music(music: str):
     pygame.mixer.music.load(music)
-    pygame.mixer.music.set_volume(.2)
+    pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(-1)
