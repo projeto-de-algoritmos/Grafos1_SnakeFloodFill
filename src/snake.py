@@ -4,7 +4,7 @@ from pygame.image import load
 from pygame.transform import scale
 from .utils import get_edges, Point
 
-SNAKE_BLOCK = 10
+SNAKE_BLOCK = 12
 
 class Direction:
     LEFT = Point(-SNAKE_BLOCK, 0)
@@ -92,8 +92,8 @@ class Snake(Group):
         self.update_body()
 
     def draw(self, surface: pygame.Surface):
-        super().draw(surface)
         self.bodyGroup.draw(surface)
+        super().draw(surface)
 
     def update_body(self):
         pos = self.head.pos

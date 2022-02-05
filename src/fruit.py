@@ -12,7 +12,7 @@ class Fruit(Sprite):
         super().__init__()
 
         self.map = map
-        self.image = scale(load("images/snake.png"), (10, 10))
+        self.image = scale(load("images/fruit.png"), (12, 12))
 
         self.rect = self.image.get_rect(center=self.random_position())
 
