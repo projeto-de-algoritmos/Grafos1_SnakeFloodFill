@@ -16,16 +16,13 @@ O projeto SnakeFloodFill tem como objetivo ser um jogo da cobrinha onde que há 
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagem**: Python<br>
+**Pré-requisitos**: Python, Pip e Pygame<br>
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
-
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
-
-
-
-
+- Clone o repositório<br>
+`git clone https://github.com/projeto-de-algoritmos/Grafos1_SnakeFloodFill`
+- Instale as dependências<br>
+`pip install -r requirements.txt`<br>
+- Na raiz do projeto, execute<br>
+`python run_game.py`
