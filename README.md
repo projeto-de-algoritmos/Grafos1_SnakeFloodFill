@@ -13,16 +13,20 @@
 O projeto SnakeFloodFill tem como objetivo ser um jogo da cobrinha onde que há varias areas infectadas que cresce com Flood Fill. O jogador tem que obter a melhor pontuação enquanto evita as áreas infectadas.
 
 ## Screenshots
-![snakeFloodFill](images/snakeFloodFill.gif)
+<img src="images/snakeFloodFill.gif" width="640" height="480" />
 
-![snakeFloodFillLargura](images/snakeFloodFillLargura.gif)
+<img src="images/snakeFloodFillLargura.gif" width="640" height="480" />
 
-![gameOverScreen](images/gameOverScreen.png)
+<img src="images/gameOverScreen.png" width="640" height="480" />
 
 ## Vídeos
-<iframe width="560" height="315" src="https://www.youtube.com/embed/abOTgURVdZA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/abOTgURVdZA" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_7lShOMbR0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/_7lShOMbR0k" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
 
 ## Instalação 
 **Linguagem**: Python<br>
