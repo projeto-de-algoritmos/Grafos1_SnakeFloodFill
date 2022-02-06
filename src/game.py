@@ -35,6 +35,7 @@ class Game(GameSurface):
     def __init__(self, config: GameConfig):
         super().__init__(display.set_mode(size=config.window_size))
         pygame.init()
+        play_music(config.music)
         display.set_caption(config.title)
 
         self.config = config
@@ -71,6 +72,10 @@ class Game(GameSurface):
     def draw(self):
         super().draw(self.surface)
 
+def play_music(music: str):
+    pygame.mixer.music.load(music)
+    pygame.mixer.music.set_volume(0.1)
+    pygame.mixer.music.play(-1)
 
 class RemoveGameObject(Exception):
     ...

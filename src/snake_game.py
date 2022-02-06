@@ -15,8 +15,6 @@ class SnakeGame(Game):
     def __init__(self, config: GameConfig):
         super().__init__(config)
 
-        play_music(config.music)
-
         self.board = Board(self)
         self.add_object(self.board)
 
@@ -68,7 +66,4 @@ class SnakeGame(Game):
             pygame.time.delay(100)
 
 
-def play_music(music: str):
-    pygame.mixer.music.load(music)
-    pygame.mixer.music.set_volume(0.2)
-    pygame.mixer.music.play(-1)
+
