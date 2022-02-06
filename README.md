@@ -20,13 +20,9 @@ O projeto SnakeFloodFill tem como objetivo ser um jogo da cobrinha onde que há 
 <img src="images/gameOverScreen.png" width="640" height="480" />
 
 ## Vídeos
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/abOTgURVdZA" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
+[Exemplo 1](https://www.youtube.com/watch?v=abOTgURVdZA)
 
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/_7lShOMbR0k" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
+[Exemplo 2](https://www.youtube.com/watch?v=_7lShOMbR0k)
 
 ## Instalação 
 **Linguagem**: Python<br>
