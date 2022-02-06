@@ -13,7 +13,16 @@
 O projeto SnakeFloodFill tem como objetivo ser um jogo da cobrinha onde que há varias areas infectadas que cresce com Flood Fill. O jogador tem que obter a melhor pontuação enquanto evita as áreas infectadas.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![snakeFloodFill](images/snakeFloodFill.gif)
+
+![snakeFloodFillLargura](images/snakeFloodFillLargura.gif)
+
+![gameOverScreen](images/gameOverScreen.png)
+
+## Vídeos
+<iframe width="560" height="315" src="https://www.youtube.com/embed/abOTgURVdZA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_7lShOMbR0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Instalação 
 **Linguagem**: Python<br>
