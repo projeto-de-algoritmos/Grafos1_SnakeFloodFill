@@ -1,6 +1,6 @@
 # SnakeFloodFill
 
-**Número da Lista**: 20<br>
+**Número da Lista**: 1<br>
 **Conteúdo da Disciplina**: Grafos 1<br>
 
 ## Alunos
@@ -20,11 +20,15 @@ O projeto SnakeFloodFill tem como objetivo ser um jogo da cobrinha onde que há 
 <img src="images/gameOverScreen.png" width="640" height="480" />
 
 ## Vídeos
-[Apresentação](https://www.youtube.com/watch?v=HaGdOqS3qOY)
 
-[Exemplo 1](https://www.youtube.com/watch?v=abOTgURVdZA)
+### Apresentação
+https://user-images.githubusercontent.com/54643530/152893173-d34ad8ab-16e9-43ae-ab26-84719f52d0ea.mp4
 
-[Exemplo 2](https://www.youtube.com/watch?v=_7lShOMbR0k)
+### Exemplo 1
+https://user-images.githubusercontent.com/54643530/152890970-dea594d3-ffd3-4604-9a75-7c3177fda20d.mp4
+
+### Exemplo 2
+https://user-images.githubusercontent.com/54643530/152890982-96f740ad-2b04-493c-bdec-27202aeaaf27.mp4
 
 ## Instalação 
 **Linguagem**: Python<br>
@@ -37,3 +41,9 @@ O projeto SnakeFloodFill tem como objetivo ser um jogo da cobrinha onde que há 
 `pip install -r requirements.txt`<br>
 - Na raiz do projeto, execute<br>
 `python run_game.py`
+
+## Referências
+Em nosso projeto os algoritmos foram baseados nas aulas da disciplina de Projetos de Algoritmose e nos seguintes links:
+- [Live de Python #158 - Jogos com Pygame](https://www.youtube.com/watch?v=t5uxBACjp8Y)
+- [Refactoring A Tower Defense Game In Python // CODE ROAST](https://www.youtube.com/watch?v=8eWYxNpMjSU)
+- [Depth First Search in Python Recursive and Non Recursive Programming](https://www.koderdojo.com/blog/depth-first-search-in-python-recursive-and-non-recursive-programming)
